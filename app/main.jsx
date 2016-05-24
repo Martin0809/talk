@@ -1,23 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+
+import App from './containers/App.jsx'
+import Login from './containers/Login.jsx'
+import Chat from './containers/Chat.jsx'
 
 import './styles/main.scss'
 
-class App extends React.Component {
-  constructor(prop) {
-    super(prop);
-  }
-
-  render() {
-    return (
-      <div>
-        <p>{ this.props.children }</p>
-      </div>
-    )
-  }
-}
-
-ReactDOM.render(
-  <App>I'm a Talk app!</App>,
+ReactDOM.render((
+    <Router history={ browserHistory }>
+      <Route path='/' component={ App }>
+        <IndexRoute component={ Chat } />
+        <Route path="login" component={ Login } />
+      </Route>
+    </Router>
+  ),
   document.getElementById('content')
 )

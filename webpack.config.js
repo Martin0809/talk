@@ -24,6 +24,10 @@ var config = {
         loader: 'style!css!autoprefixer?browsers=last 3 versions!sass'
       }
     ]
+  },
+
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.scss']
   }
 }
 
