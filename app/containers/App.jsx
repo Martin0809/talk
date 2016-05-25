@@ -8,8 +8,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>im a Talk app!</p>
+      <div className="app">
         { this.props.children }
       </div>
     )

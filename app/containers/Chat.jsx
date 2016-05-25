@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router'
+
+import faceImg from '../images/face.jpg'
 
 const socket = io.connect('http://localhost:3000');
 
@@ -15,7 +16,12 @@ export default class Chat extends React.Component {
   componentDidMount() {
     const Rthis = this;
 
-    socket.on('send message', function (msg) {
+    socket.on('receive message', function (msg) {
+      Rthis.state.messages.push(msg);
+      Rthis.setState({messages: Rthis.state.messages})
+    });
+
+    socket.on('news', function (msg) {
       Rthis.state.messages.push(msg);
       Rthis.setState({messages: Rthis.state.messages})
     });
@@ -26,25 +32,54 @@ export default class Chat extends React.Component {
   }
 
   sendMessage() {
-    socket.emit('send message', { msg: this.state.value });
-    this.refs.msgInput.value = '';
-    this.changeValue('');
+    if (this.state.value) {
+      socket.emit('send message', { type: 'msg', msg: this.state.value });
+      this.refs.msgInput.value = '';
+      this.changeValue('');
+    }
   }
 
   render() {
-    const { messages, value } = this.state;
+    const { messages } = this.state;
 
     return (
-      <div>
-        <p>im a Chat! <Link to="/login">login</Link></p>
-        <p>聊天记录：</p>
-        {
-          messages.length > 0 && messages.map(function (item, index) {
-            return <p key={ index }>{ item.msg }</p>
-          })
-        }
-        <input ref="msgInput" type="text" onChange={ (e) => this.changeValue(e.target.value) }/>
-        <button onClick={ () => this.sendMessage() }>发送</button>
+      <div className="chat">
+        <div className="sidebar">
+        </div>
+        <div className="session">
+          <div className="session-header">
+            头部
+          </div>
+          <div className="session-content">
+            <p>聊天记录：</p>
+            {
+              messages.length > 0 && messages.map(function (item, index) {
+                switch (item.type) {
+                  case 'news':
+                    return <p className="news" key={ index }>{ item.msg }</p>;
+
+                  case 'msg':
+                    return (
+                      <div className="message" key={ index }>
+                        <img className="message-face" src={ faceImg } />
+                        <div className="message-box">
+                          <p className="message-nickname">新用户</p>
+                          <p className="message-bubble">{ item.msg }</p>
+                        </div>
+                      </div>
+                    );
+
+                  default:
+                    return;
+                }
+              })
+            }
+          </div>
+          <div className="session-footer">
+            <input ref="msgInput" className="sender-input" type="text" onChange={ (e) => this.changeValue(e.target.value) }/>
+            <button className="sender-btn" onClick={ () => this.sendMessage() }>发 送</button>
+          </div>
+        </div>
       </div>
     )
   }

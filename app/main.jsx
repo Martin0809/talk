@@ -16,5 +16,5 @@ ReactDOM.render((
       </Route>
     </Router>
   ),
-  document.getElementById('content')
+  document.getElementById('talk')
 )

@@ -1,8 +1,144 @@
-body {
-  background: #566;
+@import './normalize.css';
+
+html {
+  font-size: 100px;
 }
 
-#content {
-  height: 100px;
-  background: #eee;
+body {
+  font: .12rem/1.2 "微软雅黑", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  color: #000;
+}
+
+html,
+body,
+.content,
+.app,
+.chat {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* login */
+
+
+/* chat */
+.chat {
+  display: flex;
+}
+
+.sidebar {
+  flex: none;
+  width: 2.2rem;
+  height: 100%;
+  background: #303e4b;
+  overflow: auto;
+}
+
+.session {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+.session-header {
+  flex: none;
+  height: .2rem;
+}
+
+.session-content {
+  flex: auto;
+  padding: .2rem;
+  overflow: auto;
+}
+
+.news {
+  font-size: .1rem;
+  color: #666;
+  text-align: center;
+}
+
+.message {
+  display: flex;
+  margin-top: .15rem;
+}
+
+.message-face {
+  display: block;
+  flex: none;
+  width: .48rem;
+  height: .48rem;
+}
+
+.message-box {
+  flex: auto;
+  padding-left: .15rem;
+}
+
+.message-nickname {
+  margin: 0;
+
+}
+
+.message-bubble {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: .1rem;
+  border-radius: .1rem;
+  border-top-left-radius: 0;
+  background: #0e90d2;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -.1rem;
+    width: .1rem;
+    height: .1rem;
+    background: inherit;
+    background: radial-gradient(circle at bottom left, transparent .1rem, #0e90d2 0);
+  }
+}
+
+.session-footer {
+  display: flex;
+  flex: none;
+  padding: 0 .2rem .2rem;
+}
+
+.sender-input {
+  flex: auto;
+  padding: .1rem;
+  border: 2px solid #ddd;
+  border-right-width: 0;
+  border-radius: .1rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.sender-btn {
+  flex: none;
+  padding: .1rem;
+  border: 2px solid #ddd;
+  border-radius: .1rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #ddd;
+  background: #fff;
+
+  &:hover {
+    border-color: #0e90d2;
+    color: #fff;
+    background: #0e90d2;
+  }
+
+  &:focus {
+    outline: 0;
+  }
 }
