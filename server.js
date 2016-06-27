@@ -9,7 +9,7 @@ http.listen('3000', function() {
   console.log('Talk app is running on 3000!');
 });
 
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
   res.sendfile('./dist/index.html');
 });
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
 
 import faceImg from '../images/face.jpg'
 
@@ -11,6 +12,12 @@ export default class Chat extends React.Component {
       value: '',
       messages: []
     };
+  }
+
+  componentWillMount() {
+    if (!localStorage.nickName || !localStorage.userId) {
+      browserHistory.replace('/login');
+    }
   }
 
   componentDidMount() {

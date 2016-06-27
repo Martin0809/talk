@@ -62,13 +62,15 @@ body,
 .message {
   display: flex;
   margin-top: .15rem;
+  font-size: .14rem;
 }
 
 .message-face {
   display: block;
   flex: none;
-  width: .48rem;
-  height: .48rem;
+  width: .35rem;
+  height: .35rem;
+  border-radius: .05rem;
 }
 
 .message-box {
@@ -78,7 +80,7 @@ body,
 
 .message-nickname {
   margin: 0;
-
+  font-weight: bold;
 }
 
 .message-bubble {
@@ -87,18 +89,17 @@ body,
   margin: 0;
   padding: .1rem;
   border-radius: .1rem;
-  border-top-left-radius: 0;
-  background: #0e90d2;
+  background: #d4edf4;
 
   &:before {
     content: '';
     position: absolute;
-    top: 0;
+    top: .1rem;
     left: -.1rem;
     width: .1rem;
     height: .1rem;
     background: inherit;
-    background: radial-gradient(circle at bottom left, transparent .1rem, #0e90d2 0);
+    background: radial-gradient(circle at bottom left, transparent .1rem, #d4edf4 0);
   }
 }
 
