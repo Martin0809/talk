@@ -4,6 +4,8 @@ import { browserHistory } from 'react-router'
 import faceImg from '../images/face.jpg'
 
 const socket = io.connect('http://localhost:3000');
+const nickName = localStorage.nickName;
+const userId = localStorage.userId;
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -21,16 +23,16 @@ export default class Chat extends React.Component {
   }
 
   componentDidMount() {
-    const Rthis = this;
+    const self = this;
 
     socket.on('receive message', function (msg) {
-      Rthis.state.messages.push(msg);
-      Rthis.setState({messages: Rthis.state.messages})
+      self.state.messages.push(msg);
+      self.setState({messages: self.state.messages})
     });
 
     socket.on('news', function (msg) {
-      Rthis.state.messages.push(msg);
-      Rthis.setState({messages: Rthis.state.messages})
+      self.state.messages.push(msg);
+      self.setState({messages: self.state.messages})
     });
   }
 
@@ -40,7 +42,12 @@ export default class Chat extends React.Component {
 
   sendMessage() {
     if (this.state.value) {
-      socket.emit('send message', { type: 'msg', msg: this.state.value });
+      socket.emit('send message', {
+        type: 'msg',
+        userId,
+        nickName,
+        msg: this.state.value
+      });
       this.refs.msgInput.value = '';
       this.changeValue('');
     }
@@ -58,7 +65,6 @@ export default class Chat extends React.Component {
             头部
           </div>
           <div className="session-content">
-            <p>聊天记录：</p>
             {
               messages.length > 0 && messages.map(function (item, index) {
                 switch (item.type) {
@@ -66,15 +72,25 @@ export default class Chat extends React.Component {
                     return <p className="news" key={ index }>{ item.msg }</p>;
 
                   case 'msg':
-                    return (
-                      <div className="message" key={ index }>
-                        <img className="message-face" src={ faceImg } />
-                        <div className="message-box">
-                          <p className="message-nickname">新用户</p>
-                          <p className="message-bubble">{ item.msg }</p>
+                    return item.userId === userId ? 
+                      (
+                        <div className="message self" key={ index }>
+                          <div className="message-box">
+                            <p className="message-nickname">{ item.nickName }</p>
+                            <p className="message-bubble">{ item.msg }</p>
+                          </div>
+                          <img className="message-face" src={ faceImg } />
                         </div>
-                      </div>
-                    );
+                      ) :
+                      (
+                        <div className="message" key={ index }>
+                          <img className="message-face" src={ faceImg } />
+                          <div className="message-box">
+                            <p className="message-nickname">{ item.nickName }</p>
+                            <p className="message-bubble">{ item.msg }</p>
+                          </div>
+                        </div>
+                      );
 
                   default:
                     return;

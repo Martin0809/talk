@@ -25,9 +25,12 @@ export default class Login extends React.Component {
     const { nickName } = this.state;
 
     return (
-      <div>
-        nickName: <input type="text" placeholder="请输入昵称" value={ nickName } onChange={ (e) => this.handerChangeNickName(e.target.value) }/>
-        <button onClick={ () => this.handerJoin() }>加入Talk</button>
+      <div className="login-wrapper">
+        <div className="login-container">
+          <p className="login-logo">Talk</p>
+          <input className="login-nickname" type="text" placeholder="请输入昵称" value={ nickName } onChange={ (e) => this.handerChangeNickName(e.target.value) }/>
+          <button className="login-btn"  onClick={ () => this.handerJoin() }>开始聊天</button>
+        </div>
       </div>
     )
   }

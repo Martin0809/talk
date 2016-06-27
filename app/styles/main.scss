@@ -19,7 +19,7 @@ body,
 }
 
 /* login */
-
+@import './_login';
 
 /* chat */
 .chat {
@@ -63,6 +63,21 @@ body,
   display: flex;
   margin-top: .15rem;
   font-size: .14rem;
+
+  &.self {
+    .message-box {
+      padding-left: 0;
+      padding-right: .15rem;
+      text-align: right;
+    }
+
+    .message-bubble {
+      &::before {
+        left: 100%;
+        background: radial-gradient(circle at bottom right, transparent .1rem, #d4edf4 0);
+      }
+    }
+  }
 }
 
 .message-face {
@@ -91,7 +106,7 @@ body,
   border-radius: .1rem;
   background: #d4edf4;
 
-  &:before {
+  &::before {
     content: '';
     position: absolute;
     top: .1rem;
@@ -132,6 +147,7 @@ body,
   border-bottom-left-radius: 0;
   color: #ddd;
   background: #fff;
+  transition: all .3s ease;
 
   &:hover {
     border-color: #0e90d2;
