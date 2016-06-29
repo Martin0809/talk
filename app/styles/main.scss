@@ -19,7 +19,22 @@ body,
 }
 
 /* login */
-
+.move-swap{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.move-swap__back{
+  background: url("../images/bg.jpg");
+  position: absolute;
+  background-position: center center!important;
+  background-size: 100% 100%!important;
+  background-repeat: no-repeat!important;
+  margin:-5%;
+  width:120%;
+  height: 120%;
+}
 
 /* chat */
 .chat {
