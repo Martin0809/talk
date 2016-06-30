@@ -19,7 +19,38 @@ body,
 }
 
 /* login */
-@import './_login';
+.move-swap{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.move-swap__back{
+  background: url("../images/bg.jpg");
+  position: absolute;
+  background-position: center center!important;
+  background-size: 100% 100%!important;
+  background-repeat: no-repeat!important;
+  margin:-5%;
+  width:120%;
+  height: 120%;
+}
+
+.loginBox{
+  width: 3rem;
+  height: 2rem;
+  background: rgba(255,255,255,0.5);
+  position: inherit;
+  border-radius: 5px;
+  display: flex;
+  flex-direction:column;
+  justify-content:space-around;
+  align-items:center;
+  left:50%;
+  top:50%;
+  margin-left: -1.5rem;
+  margin-top: -1.5rem;
+}
 
 /* chat */
 .chat {
