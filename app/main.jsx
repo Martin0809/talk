@@ -6,6 +6,7 @@ import App from './containers/App.jsx'
 import Login from './containers/Login.jsx'
 import Chat from './containers/Chat.jsx'
 import Try from './containers/Try.jsx'
+import 'antd/dist/antd.css';
 
 import './styles/main.scss'
 

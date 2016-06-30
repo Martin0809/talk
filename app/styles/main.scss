@@ -36,6 +36,22 @@ body,
   height: 120%;
 }
 
+.loginBox{
+  width: 3rem;
+  height: 2rem;
+  background: rgba(255,255,255,0.5);
+  position: inherit;
+  border-radius: 5px;
+  display: flex;
+  flex-direction:column;
+  justify-content:space-around;
+  align-items:center;
+  left:50%;
+  top:50%;
+  margin-left: -1.5rem;
+  margin-top: -1.5rem;
+}
+
 /* chat */
 .chat {
   display: flex;
