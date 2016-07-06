@@ -6,7 +6,7 @@ import { Input } from 'antd';
 
 
 var x,y;
-export default class Login extends React.Component {
+class Login extends React.Component {
   constructor(props) {
 
     super(props);
@@ -54,3 +54,5 @@ export default class Login extends React.Component {
     )
   }
 }
+
+module.exports = Login;

@@ -7,7 +7,7 @@ const socket = io.connect('http://localhost:3000');
 const nickName = localStorage.nickName;
 const userId = localStorage.userId;
 
-export default class Chat extends React.Component {
+class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -107,3 +107,5 @@ export default class Chat extends React.Component {
     )
   }
 }
+
+module.exports = Chat;

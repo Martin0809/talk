@@ -1,9 +1,13 @@
+var webpack = require('webpack');
 var config = {
-  entry: './app/main.jsx',
+  entry: {
+    main: './app/main.jsx'
+  },
 
   output: {
     path: './dist',
-    filename: 'main.js'
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js'
   },
 
   module: {
@@ -28,7 +32,11 @@ var config = {
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss']
-  }
+  },
+
+  // plugins: [
+  //   new webpack.optimize.CommonsChunkPlugin('libs.js')
+  // ]
 }
 
 module.exports = config;
